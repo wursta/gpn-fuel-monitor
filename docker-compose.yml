@@ -1,0 +1,25 @@
+services:
+  gpn-fuel-monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gpn-fuel-monitor
+    restart: unless-stopped
+    volumes:
+      - ./config.yaml:/app/config.yaml:ro
+      - data:/app/data
+    working_dir: /app
+    environment:
+      - TZ=Europe/Moscow
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+        reservations:
+          cpus: "0.1"
+          memory: 32M
+
+volumes:
+  data:
+    name: gpn-fuel-monitor-data

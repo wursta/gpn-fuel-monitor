@@ -1,0 +1,27 @@
+# Version control
+.git
+.gitignore
+
+# Runtime data (created by the application)
+config.yaml
+state.json
+monitor.log
+monitor.log.old
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*~
+
+# Build artifacts
+monitor
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files (avoid recursive context)
+docker-compose.yml
+Dockerfile
+.dockerignore

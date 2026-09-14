@@ -147,3 +147,67 @@ kill <pid>
 ```
 
 При graceful shutdown состояние сохраняется в `state.json`.
+
+## Запуск через Docker
+
+### Требования
+
+- Docker и Docker Compose v2
+
+### Настройка
+
+1. Скопируйте пример конфигурации (если ещё не сделали):
+
+```bash
+cp config.yaml.example config.yaml
+```
+
+2. Отредактируйте `config.yaml`:
+
+   - Укажите `state_file` и `log_file` с путями к смонтированному тому:
+
+     ```yaml
+     state_file: "/app/data/state.json"
+     log_file: "/app/data/monitor.log"
+     ```
+
+   - Заполните `telegram_bot_token` и `telegram_chat_id`
+   - При необходимости укажите `proxy`
+
+3. Запустите:
+
+```bash
+docker compose up -d
+```
+
+4. Просмотр логов:
+
+```bash
+docker compose logs -f
+```
+
+5. Остановка:
+
+```bash
+docker compose down
+```
+
+### Структура томов
+
+| Том | Путь в контейнере | Назначение |
+|-----|-------------------|------------|
+| `./config.yaml` (bind mount, ro) | `/app/config.yaml` | Файл конфигурации |
+| `gpn-fuel-monitor-data` (named volume) | `/app/data/` | `state.json` и `monitor.log` |
+
+### Переменные окружения
+
+| Переменная | Описание | По умолчанию |
+|------------|----------|-------------|
+| `TZ` | Часовой пояс контейнера | `Europe/Moscow` |
+
+### Ограничения ресурсов
+
+| Ресурс | Лимит | Резерв |
+|--------|-------|--------|
+| CPU | 0.5 ядра | 0.1 ядра |
+| Память | 128 МБ | 32 МБ |
