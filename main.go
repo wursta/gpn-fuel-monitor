@@ -98,7 +98,6 @@ func checkAndNotify(ctx context.Context, cfg *Config, state *AppState, logger *s
 		newState := &FuelState{
 			Avail:    fuel.Rest.Avail,
 			Delivery: fuel.Rest.Delivery,
-			Since:    fuel.Rest.Since,
 			Status:   currentStatus.Status,
 		}
 

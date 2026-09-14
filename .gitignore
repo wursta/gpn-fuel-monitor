@@ -1,2 +1,5 @@
 .idea
 /config.yaml
+/monitor.exe
+/monitor.log
+/state.json

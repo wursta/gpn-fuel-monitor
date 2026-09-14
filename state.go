@@ -61,12 +61,11 @@ func (s *AppState) SaveState(path string) error {
 }
 
 // StatusChanged сравнивает два состояния топлива.
-// Возвращает true, если изменился кортеж (avail, delivery, since).
+// Возвращает true, если изменился кортеж (avail, delivery).
+// Поле since игнорируется — это метка актуальности данных, а не часть статуса.
 func StatusChanged(old, new *FuelState) bool {
 	if old == nil {
 		return true // новое топливо — считаем изменением
 	}
-	return old.Avail != new.Avail ||
-		old.Delivery != new.Delivery ||
-		old.Since != new.Since
+	return old.Avail != new.Avail || old.Delivery != new.Delivery
 }
