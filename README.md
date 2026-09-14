@@ -31,49 +31,19 @@ go mod tidy
 
 ## Настройка
 
-1. Скопируйте файл конфигурации:
+1. Скопируйте пример конфигурации:
 
 ```bash
-cp config.yaml config.yaml.bak
+cp config.yaml.example config.yaml
 ```
 
-2. Отредактируйте `config.yaml`:
+2. Отредактируйте `config.yaml` (пример в `config.yaml.example`):
 
-```yaml
-# ID АЗС
-station_id: 1109
-
-# Топлива: название -> ID
-fuels:
-  "АИ-95": 12
-  "G-Drive 95": 421
-
-# Интервал проверки в секундах (по умолчанию 300 = 5 минут)
-check_interval_seconds: 300
-
-# Telegram Bot API (получить через @BotFather)
-telegram_bot_token: "YOUR_BOT_TOKEN"
-telegram_chat_id: "YOUR_CHAT_ID"
-
-# Заголовки HTTP-запросов
-headers:
-  User-Agent: "Mozilla/5.0 ..."
-
-# Файлы (можно оставить значения по умолчанию)
-state_file: "state.json"
-log_file: "monitor.log"
-
-# Автоочистка логов
-# Через сколько дней удалять старые логи (по умолчанию 7)
-log_retention_days: 7
-# Максимальный размер лога в МБ перед ротацией (по умолчанию 10)
-log_max_size_mb: 10
-
-# HTTP-прокси для Telegram API и внешнего API
-# Формат: http://user:pass@host:port или http://host:port
-# Оставить пустым для прямого подключения
-proxy: ""
+```bash
+cp config.yaml.example config.yaml
 ```
+
+Полный пример конфига — см. `config.yaml.example`.
 
 ### ID топлив
 
@@ -126,7 +96,8 @@ nohup ./monitor > /dev/null 2>&1 &
 | `telegram.go` | Отправка уведомлений в Telegram |
 | `log_cleanup.go` | Автоочистка старых логов |
 | `http_client.go` | HTTP-клиент с поддержкой прокси |
-| `config.yaml` | Файл конфигурации |
+| `config.yaml.example` | Пример конфигурации (добавлен в git) |
+| `config.yaml` | Файл конфигурации (не добавлен в git) |
 | `state.json` | Состояние (создаётся автоматически) |
 | `monitor.log` | Лог-файл (создаётся автоматически) |
 

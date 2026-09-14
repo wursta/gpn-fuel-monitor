@@ -1,0 +1,38 @@
+# GPN Fuel Monitor — пример конфигурации
+# Скопируйте в config.yaml и заполните значения
+
+# ID АЗС
+station_id: 1109
+
+# Топлива: название -> ID
+fuels:
+  "АИ-95": 12
+  "G-Drive 95": 421
+
+# Интервал проверки в секундах (по умолчанию 300 = 5 минут)
+check_interval_seconds: 300
+
+# Telegram Bot API (получить через @BotFather)
+telegram_bot_token: ""
+telegram_chat_id: ""
+
+# Заголовки HTTP-запросов
+headers:
+  User-Agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+# Файл состояния (для сравнения изменений)
+state_file: "state.json"
+
+# Файл логов
+log_file: "monitor.log"
+
+# Автоочистка логов
+# Через сколько дней удалять старые логи (по умолчанию 7)
+log_retention_days: 7
+# Максимальный размер лога в МБ перед ротацией (по умолчанию 10)
+log_max_size_mb: 10
+
+# HTTP-прокси для Telegram API и внешнего API
+# Формат: http://user:pass@host:port или http://host:port
+# Оставить пустым для прямого подключения
+proxy: ""
